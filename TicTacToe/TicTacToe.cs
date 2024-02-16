@@ -5,8 +5,6 @@ class TicTacToe
     private char[,] board;
     private char currentPlayer;
 
-    public object CurrentPlayer { get; internal set; }
-
     public TicTacToe()
     {
         board = new char[3, 3];
@@ -68,13 +66,26 @@ class TicTacToe
         return false;
     }
 
+    public bool IsBoardFull()
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                if (board[row, col] == ' ')
+                    return false;
+            }
+        }
+        return true;
+    }
+
     public void SwitchPlayer()
     {
         currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
     }
 
-    internal bool IsBoardFull()
+    public char CurrentPlayer
     {
-        throw new NotImplementedException();
+        get { return currentPlayer; }
     }
 }
